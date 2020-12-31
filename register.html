@@ -11,34 +11,36 @@
     <table>
         <tr>
             <td>Name :</td>
-            <td><input type="text" name="" placeholder="Name"></td>
+            <td><input type="text" name="username" placeholder="Name"></td>
         </tr>
         <tr>
             <td>Password :</td>
-            <td><input type="password" name="" placeholder="Password"></td>
+            <td><input type="password" name="password" placeholder="Password"></td>
         </tr>
         <tr>
             <td>Gender</td>
-            <td><input type="radio" name="Gender">Male</td>
-            <td><input type="radio" name="Gender">Female</td>
+            <td><input type="radio" name="gender" value="m">Male</td>
+            <td><input type="radio" name="gender" value="f">Female</td>
         </tr>
         <tr>
             <td>Email :</td>
             <td>
-                <input type="email" name="" placeholder="Email">
+                <input type="email" name="email" placeholder="Email">
             </td>
         </tr>
         <tr>
-            <td>Mobile</td>
-            <td><select name="">
-                    <option value="">977</option>
-                    <option value="">978</option>
-                    <option value="">979</option>
-                    <option value="">980</option>
-                    <option value="">981</option>
-                    <option value="">982</option>
+            <td>Phone No</td>
+            <td>
+                <select name="phoneCode">
+                    <option selected hidden value="">Select Code</option>
+                    <option value="977">977</option>
+                    <option value="978">978</option>
+                    <option value="979">979</option>
+                    <option value="980">980</option>
+                    <option value="981">981</option>
+                    <option value="982">982</option>
                 </select>
-                <input type="Phone" placeholder="96428*****">
+                <input type="phone" name="phone" placeholder="96428*****">
             </td>
         </tr>
         <tr>

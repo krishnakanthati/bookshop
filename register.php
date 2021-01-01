@@ -102,7 +102,7 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" aria-current="page" href="home.php">Home</a>
                     </li>
                     <li class="nav-item">
                     <a class="nav-link" href="#">Features</a>
@@ -158,7 +158,7 @@
             </div>
             <br>
             <div class="row">
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-5">
                 <label for="inputState">State</label>
                 <select id="inputState" class="form-control">
                     <option selected>Choose...</option>
@@ -169,7 +169,7 @@
                 <label for="city">City</label>
                 <input type="text" class="form-control" id="city" placeholder="City">
                 </div>
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-2">
                     <label for="inputZip">Zip</label>
                     <input type="text" class="form-control" id="inputZip" placeholder="ZIP Code">
                 </div>

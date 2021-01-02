@@ -53,16 +53,14 @@
         }
 
         // if no errors, insert into database
-
-        if ( (empty($username_err)) && (empty($password_err)) && (empty($email_err)) && (empty($name_err)) ) {
-            $sql = "INSERT INTO users (username, password, email, name) VALUES (?, ?, ?, ?)";
+        if ( (empty($username_err)) && (empty($email_err)) && (empty($name_err)) ) {
+            $sql = "INSERT INTO users (username, email, name) VALUES (?, ?, ?)";
             $stmt = mysqli_prepare($conn, $sql);
             if ($stmt) {
-                mysqli_stmt_bind_param($stmt, "ssss", $param_username, $param_password, $param_email, $param_name);
+                mysqli_stmt_bind_param($stmt, "sss", $param_username, $param_email, $param_name);
 
                 // set these parameters
                 $param_username = $username;
-                $param_password = password_hash($password, PASSWORD_DEFAULT);
                 $param_email = $email;
                 $param_name = $name;
 
@@ -75,6 +73,24 @@
             }
             mysqli_stmt_close($stmt);
         }
+
+        $sql = "INSERT INTO login (username, password) VALUES (?, ?)";
+            $stmt = mysqli_prepare($conn, $sql);
+            if ($stmt) {
+                mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_password);
+
+                // set these parameters
+                // $param_username = $username;
+                $param_password = password_hash($password, PASSWORD_DEFAULT);
+
+                // try to execute the query
+                if (mysqli_stmt_execute($stmt)) {
+                    header("location: login.php");
+                } else {
+                    echo "Something went wrong.";
+                }
+            }
+            mysqli_stmt_close($stmt);
 
         mysqli_close($conn);
     }

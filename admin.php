@@ -43,16 +43,29 @@ error_reporting(0);
       <div> 
           <button type="submit" name="upload">UPLOAD</button> 
         </div> 
-        <?php  
-                $query = "SELECT filename FROM image";  
+
+
+<table class="table table-bordered">  
+                     <tr>  
+                          <th>Image</th>  
+                     </tr>  
+                <?php  
+                $query = "SELECT * FROM image ORDER BY id DESC";  
                 $result = mysqli_query($db, $query);  
-                while($row = mysqli_fetch_array($result))  {
-                // {  echo "$image";
+                while($row = mysqli_fetch_array($result))  
+                {  
                     $image = '../books/'.$row['filename'];
-                    echo "<img src=$image >";
-                }
-  
-                ?> 
+ 
+                     echo "  
+                         
+                          
+                               <img height='200' width='300' class='img-thumnail' src=$image >  
+                           
+                         
+                     ";  
+                }  
+                ?>  
+                </table>  
   </form> 
 </div>
 

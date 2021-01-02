@@ -34,7 +34,8 @@ error_reporting(0);
 <html> 
 <head> 
 <title>Image Upload</title> 
-<link rel="stylesheet" type= "text/css" href ="style.css"/> 
+
+</head>
 <div id="content"> 
   
   <form method="POST" action="" enctype="multipart/form-data"> 

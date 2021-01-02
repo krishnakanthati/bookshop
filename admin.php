@@ -48,7 +48,7 @@ error_reporting(0);
                 $result = mysqli_query($db, $query);  
                 while($row = mysqli_fetch_array($result))  {
                 // {  echo "$image";
-                    $image = '../books/kris.png';
+                    $image = '../books/'.$row['filename'];
                     echo "<img src=$image >";
                 }
   

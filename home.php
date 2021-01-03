@@ -1,5 +1,5 @@
 <?php
-
+require_once "config.php";
 session_start();
 
 if ( !isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true ) {
@@ -43,7 +43,7 @@ if ( !isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true ) {
                         Dropdown link
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="cart.php">My Cart</a></li>
                         <li><a class="dropdown-item" href="#">Another action</a></li>
                         <li><a class="dropdown-item" href="#">Something else here</a></li>
                     </ul>
@@ -56,16 +56,40 @@ if ( !isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true ) {
                     </li>
 
                 </ul>
+                
   
         </div>              
 </nav>
 
     <div class="container mt-4">
+    <div class="row">
+    <?php
+      $sel = "SELECT image FROM upload";
+      $que = mysqli_query($connect, $sel);
 
+      if(mysqli_num_rows($que) > 0)  
+      {  
+              while($row = mysqli_fetch_array($que))  
+              {  
+      ?>  
 
-    <h3>Hello!!</h3>
-    
-  </div>
+      <div class="col-md-3" style="padding: 10px;">  
+      <div class="card" style="padding: 10px;">
+      <img class="card-img-top col-md-3" src="<?php echo $row['image'] ?>" style="width: 100%; height: 17rem;">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some tent.</p>
+        <a href="cart.php" class="btn btn-primary col-md-12">Add to Cart</a>
+      </div>
+      </div>  
+      </div>
+
+      <?php  
+              }  
+      }  
+      ?>
+      </div>
+    </div>
 
 
 

@@ -11,7 +11,7 @@
             $username_err = "Username cannot be blank.";
         } else {
             $sql = "SELECT id FROM users WHERE username = ?";
-            $stmt = mysqli_prepare($conn, $sql);
+            $stmt = mysqli_prepare($connect, $sql);
 
             if ($stmt) {
                 mysqli_stmt_bind_param($stmt, "s", $param_username);
@@ -55,7 +55,7 @@
         // if no errors, insert into database
         if ( (empty($username_err)) && (empty($email_err)) && (empty($name_err)) ) {
             $sql = "INSERT INTO users (username, email, name) VALUES (?, ?, ?)";
-            $stmt = mysqli_prepare($conn, $sql);
+            $stmt = mysqli_prepare($connect, $sql);
             if ($stmt) {
                 mysqli_stmt_bind_param($stmt, "sss", $param_username, $param_email, $param_name);
 
@@ -75,7 +75,7 @@
         }
 
         $sql = "INSERT INTO login (username, password) VALUES (?, ?)";
-            $stmt = mysqli_prepare($conn, $sql);
+            $stmt = mysqli_prepare($connect, $sql);
             if ($stmt) {
                 mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_password);
 
@@ -92,7 +92,7 @@
             }
             mysqli_stmt_close($stmt);
 
-        mysqli_close($conn);
+        mysqli_close($connect);
     }
 ?>
 
@@ -147,41 +147,42 @@
         <hr>
         <form action="" method="post">
             <div class="row">
-            <div class="form-group col-md-5">
+            <div class="form-group col-md-6">
                 <label for="inputEmail4">Name</label>
                 <input type="text" class="form-control" name="name" id="inputName4" placeholder="Name">
             </div>
-            <div class="form-group col-md-5">
+            <div class="form-group col-md-6">
                 <label for="inputEmail4">Username</label>
                 <input type="text" class="form-control" name="username" id="inputUsername4" placeholder="Username">
             </div>
             </div>
             <br>
             <div class="row">
-                <div class="form-group col-md-5">
+                <div class="form-group col-md-6">
                 <label for="inputEmail4">Email</label>
                 <input type="email" class="form-control" name="email" id="inputEmail4" placeholder="Email">
+                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                 </div>
-                <div class="form-group col-md-5">
+                <div class="form-group col-md-6">
                 <label for="inputPassword4">Password</label>
                 <input type="password" class="form-control" name="password" id="inputPassword4" placeholder="Password">
                 </div>
             </div>
             <br>
-            <div class="form-group col-md-10">
+            <div class="form-group col-md-12">
                 <label for="inputAddress2">Address</label>
                 <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
             </div>
             <br>
             <div class="row">
-                <div class="form-group col-md-5">
+                <div class="form-group col-md-6">
                 <label for="inputState">State</label>
                 <select id="inputState" class="form-control">
                     <option selected>Choose...</option>
                     <option>...</option>
                 </select>
                 </div>
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-4">
                 <label for="city">City</label>
                 <input type="text" class="form-control" id="city" placeholder="City">
                 </div>
@@ -189,14 +190,14 @@
                     <label for="inputZip">Zip</label>
                     <input type="text" class="form-control" id="inputZip" placeholder="ZIP Code">
                 </div>
-                <div class="form-group col-md-5">
+                <div class="form-group col-md-12">
                 <br>
                 <label for="phone">Phone</label>
                 <input type="tel" class="form-control" id="phone" placeholder="Phone Number">
                 </div>
             </div>
             <br>
-                <button type="submit" class="btn btn-primary">Sign up</button>
+                <button type="submit" class="btn btn-primary col-md-2">Sign up</button>
         </form>
     
   </div>

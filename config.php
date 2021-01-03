@@ -5,10 +5,10 @@ define('DB_PASSWORD', '');
 define('DB_NAME', 'bookshop');
 
 // connection
-$conn = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+$connect = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
 // check the connection 
-if ($conn == false) {
+if ($connect == false) {
     die('Error: Cannot connect');
 }
 

@@ -7,7 +7,7 @@ error_reporting(0);
   
   // If upload button is clicked ... 
   if (isset($_POST['upload'])) { 
-  
+    $filename = "";
     $filename = $_FILES["uploadfile"]["name"]; 
     $tempname = $_FILES["uploadfile"]["tmp_name"];     
         $folder = "books/".$filename; 
@@ -27,45 +27,56 @@ error_reporting(0);
             $msg = "Failed to upload image"; 
       } 
   } 
-  $result = mysqli_query($db, "SELECT * FROM image"); 
+  $result = mysqli_query($db, "SELECT * FROM image");
 ?> 
   
 <!DOCTYPE html> 
 <html> 
 <head> 
 <title>Image Upload</title> 
+<style>
+table, th, td {
+  border: 2px solid black;
+  padding: 5px;
+}
+td {
+  padding:15px;
+}
+table {
+  border-spacing: 0 15px;
+  border-collapse: collapse;
+}
+</style>
 
 </head>
 <div id="content"> 
   
   <form method="POST" action="" enctype="multipart/form-data"> 
       <input type="file" name="uploadfile" value=""/> 
-        
-      <div> 
-          <button type="submit" name="upload">UPLOAD</button> 
-        </div> 
+      <button type="submit" name="upload">UPLOAD</button> 
 
-
-<table class="table table-bordered">  
+<table style="width:100%" class="table table-bordered">  
                      <tr>  
                           <th>Image</th>  
-                     </tr>  
-                <?php  
+                     </tr>
+                     <tr><td>
+
+ <?php  
                 $query = "SELECT * FROM image ORDER BY id DESC";  
-                $result = mysqli_query($db, $query);  
+                $result = mysqli_query($db, $query);
                 while($row = mysqli_fetch_array($result))  
                 {  
-                    $image = '../books/'.$row['filename'];
+
+                      $image = 'books/'.$row['filename'];
+                     echo "<img height='300' width='220' class='img-thumnail' src=$image >";
+
+
+
+                }
+                ?></td>
+
  
-                     echo "  
-                         
-                          
-                               <img height='200' width='300' class='img-thumnail' src=$image >  
-                           
-                         
-                     ";  
-                }  
-                ?>  
+                     </tr>
                 </table>  
   </form> 
 </div>

@@ -1,16 +1,17 @@
 <?php
     require_once "config.php";
+    session_start();
 
     if (isset($_POST['upload'])) {
       $file = ($_FILES['image']['name']);
-      $query = "INSERT INTO upload (image) VALUES ('$file') ";
+      $name = ($_POST['name']);
+      $price = ($_POST['price']);
 
+      $query = "INSERT INTO tbl_product (image, name, price) VALUES ('$file', '$name', '$price')";
       $res = mysqli_query($connect, $query);
-
-      // if ($res) {
-      //   move_uploaded_file($_FILES['image']['tmp_name'], $file);
-      // }
     }
+
+ 
 ?>
 
 <!doctype html>
@@ -41,17 +42,21 @@
                     <a class="nav-link" href="#">Features</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="login.php">Login</a>
+                    <a class="nav-link" href="logout.php">Logout</a>
                     </li>
                     <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Dropdown link
                     </a>
+
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <li><a class="dropdown-item" href="#">Action</a></li>
                         <li><a class="dropdown-item" href="#">Another action</a></li>
                         <li><a class="dropdown-item" href="#">Something else here</a></li>
                     </ul>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="">Welcome <?php echo ucfirst($_SESSION['username']).'!'; ?></a>
                     </li>
                 </ul>
             </div>
@@ -66,16 +71,26 @@
 
     <div class="row">
     <div class="col-md-12">
-    <h3 class="text-center">Books Details.</h3>
+    <!-- <h3 class="text-center">Books Details.</h3> -->
     <form action="" class="my-5" method="post" enctype="multipart/form-data">
     <input type="file" name="image" class="form-control col-md-3" value="">
-    <input type="submit" name="upload" value="upload" class="btn btn-success my-3 col-md-12">
+    <br>
+    <div class="row">
+            <div class="form-group col-md-6">
+                <input type="text" maxlength="15" class="form-control" name="name" id="inputName4" placeholder="Name of BOOK">
+            </div>
+            <div class="form-group col-md-6">
+                <input type="number" min="100" class="form-control" name="price" id="inputUsername4" placeholder="Price in $">
+            </div>
+            </div>
+            <br>
+            <input type="submit" name="upload" value="upload" class="btn btn-primary my-3 col-md-12">
     </form>
     </div>
 
 
     <?php
-      $sel = "SELECT image FROM upload";
+      $sel = "SELECT * FROM tbl_product";
       $que = mysqli_query($connect, $sel);
 
       if(mysqli_num_rows($que) > 0)  
@@ -85,12 +100,11 @@
       ?>  
 
       <div class="col-md-3" style="padding: 10px;">  
-      <div class="card" style="padding: 10px;">
+      <div class="card" style="padding: 7px;">
       <img class="card-img-top col-md-3" src="<?php echo 'books/'.$row['image'] ?>" style="width: 100%; height: 17rem;">
       <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some tent.</p>
-        <a href="cart.php" class="btn btn-primary col-md-12">Add to Cart</a>
+      <div class="text-center"><strong><?php echo $row['name']; ?></strong></div>
+                <div class="text-center text-success"><strong>$ <?php echo $row['price']; ?></strong></div>
       </div>
       </div>  
       </div>

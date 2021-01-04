@@ -46,7 +46,7 @@
         // check for password
         if (empty(trim($_POST["password"]))) {
             $password_err = "Password cannot be blank.";
-        } elseif (strlen(trim($_POST["password"])) < 5) {
+        } elseif (strlen(trim($_POST["password"])) < 4) {
             $password_err = "Password cannot be less than 5 characters";
         } else {
             $password = trim($_POST["password"]);
@@ -108,7 +108,7 @@
 
     <title>bookshop</title>
   </head>
-  <body>
+  <body style="">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">bookshop</a>

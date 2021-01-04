@@ -7,7 +7,6 @@ if ( !isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true ) {
 }
 
 ?>
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -20,7 +19,7 @@ if ( !isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true ) {
 
     <title>bookshop</title>
   </head>
-  <body>
+  <body style="background-color:pink;">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">bookshop</a>
@@ -36,35 +35,40 @@ if ( !isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true ) {
                     <a class="nav-link" href="#">Features</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="register.php">Register</a>
+                    <a class="nav-link" href="login.php">Login</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="logout.php">Logout</a>
                     </li>
                     <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Dropdown link
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="cart.php">My Cart</a></li>
+                        <li><a class="dropdown-item" href="admin.php">Admin</a></li>
                         <li><a class="dropdown-item" href="#">Another action</a></li>
                         <li><a class="dropdown-item" href="#">Something else here</a></li>
                     </ul>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="logout.php">Logout</a>
+                    <a class="nav-link" href="">Welcome <?php echo ucfirst($_SESSION['username']).'!'; ?></a>
                     </li>
-                    <li class="nav-item ml-auto">
-                        <a class="nav-link" href="#"><img title=<?php echo $_SESSION["username"];?> src="https://img.icons8.com/ios-filled/25/888888/user-male-circle.png"/> <?php echo $_SESSION["username"];?></a>
-                    </li>
-
                 </ul>
-                
-  
-        </div>              
-</nav>
-
+            </div>
+        </div>
+    </nav>
     <div class="container mt-4">
+
+
+    <h3>Books:</h3>
+    <hr>
+
+
     <div class="row">
+
+
     <?php
-      $sel = "SELECT image FROM upload";
+      $sel = "SELECT * FROM tbl_product";
       $que = mysqli_query($connect, $sel);
 
       if(mysqli_num_rows($que) > 0)  
@@ -74,12 +78,14 @@ if ( !isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true ) {
       ?>  
 
       <div class="col-md-3" style="padding: 10px;">  
-      <div class="card" style="padding: 10px;">
-      <img class="card-img-top col-md-3" src="<?php echo $row['image'] ?>" style="width: 100%; height: 17rem;">
+      <div class="card" style="padding: 7px;">
+      <img class="card-img-top col-md-3" src="<?php echo 'books/'.$row['image'] ?>" style="width: 100%; height: 17rem;">
       <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some tent.</p>
-        <a href="cart.php" class="btn btn-primary col-md-12">Add to Cart</a>
+                <div class="text-center"><strong><?php echo $row['name']; ?></strong></div>
+                <div class="text-center text-success"><strong>$ <?php echo $row['price']; ?></strong></div>
+                <form action="cart.php" method="post">
+                <input type="submit" class="btn btn-primary col-md-12" value="Add to Cart" />
+                </form>
       </div>
       </div>  
       </div>
@@ -89,7 +95,6 @@ if ( !isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true ) {
       }  
       ?>
       </div>
-    </div>
 
 
 

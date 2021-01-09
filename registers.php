@@ -1,69 +1,58 @@
 <?php
     require_once "config.php";
 
-    $username = $email = $password = $name = "";
-    $username_err = $email_err = $password_err = $name_err = "";
+    $name = $username = $email = $password = $address = $state = $city = $zip = $phone = "";
 
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
-        
-        // check if username is empty
-        if (empty(trim($_POST["username"]))) {
-            $username_err = "Username cannot be blank.";
-        } else {
-            $sql = "SELECT id FROM users WHERE username = ?";
-            $stmt = mysqli_prepare($connect, $sql);
+        $sql = "SELECT id FROM register WHERE username = ?";
+        $stmt = mysqli_prepare($connect, $sql);
+        if ($stmt) {
+            mysqli_stmt_bind_param($stmt, "s", $param_username);
 
-            if ($stmt) {
-                mysqli_stmt_bind_param($stmt, "s", $param_username);
+            // set the value of param username
+            $param_username = trim($_POST["username"]);
 
-                // set the value of param username
-                $param_username = trim($_POST["username"]);
-
-                // execute the satement
-                if (mysqli_stmt_execute($stmt)) {
-                    mysqli_stmt_store_result($stmt);
-                    if (mysqli_stmt_num_rows($stmt) == 1) {
-                        $username_err = "This username is already taken.";
-                    } else {
-                        $username = trim($_POST["username"]);
-                    }
+            // execute the satement
+            if (mysqli_stmt_execute($stmt)) {
+                mysqli_stmt_store_result($stmt);                
+                if (mysqli_stmt_num_rows($stmt) == 1) {
+                    echo "This username is already taken.";
+                    mysqli_stmt_close($stmt);
                 } else {
-                    echo "Something went wrong.";
+                    $username = trim($_POST["username"]);
                 }
+            } else {
+                echo "Something went wrong.";
             }
         }
         mysqli_stmt_close($stmt);
 
-
-
-        // check for email
-        if (empty(trim($_POST["email"]))) {
-            $email_err = "Email cannot be blank.";
-        } else {
-            $email = trim($_POST["email"]);
-        }
-
-        // check for password
-        if (empty(trim($_POST["password"]))) {
-            $password_err = "Password cannot be blank.";
-        } elseif (strlen(trim($_POST["password"])) < 4) {
-            $password_err = "Password cannot be less than 5 characters";
-        } else {
-            $password = trim($_POST["password"]);
-        }
+        $name = trim($_POST["name"]);
+        $email = trim($_POST["email"]);
+        $address = trim($_POST["address"]);
+        $password = trim($_POST["password"]);
+        $state = trim($_POST["state"]);
+        $city = trim($_POST["city"]);
+        $zip = trim($_POST["zip"]);
+        $phone = trim($_POST["phone"]);
 
         // if no errors, insert into database
-        if ( (empty($username_err)) && (empty($email_err)) && (empty($name_err)) ) {
-            $sql = "INSERT INTO users (username, email, name) VALUES (?, ?, ?)";
+        if ( $username != "") {
+            $sql = "INSERT INTO register (name, username, email, address, state, city, zip, phone) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             $stmt = mysqli_prepare($connect, $sql);
             if ($stmt) {
-                mysqli_stmt_bind_param($stmt, "sss", $param_username, $param_email, $param_name);
+                mysqli_stmt_bind_param($stmt, "ssssssii", $param_name, $param_username, $param_email, $param_address, $param_state, $param_city, $param_zip, $param_phone);
 
-                // set these parameters
+                // set parameters
+                $param_name = $name;
                 $param_username = $username;
                 $param_email = $email;
-                $param_name = $name;
-
+                $param_address = $address;
+                $param_state = $state;
+                $param_city = $city;
+                $param_zip = $zip;
+                $param_phone = $phone;
+                
                 // try to execute the query
                 if (mysqli_stmt_execute($stmt)) {
                     header("location: login.php");
@@ -71,27 +60,25 @@
                     echo "Something went wrong.";
                 }
             }
-            mysqli_stmt_close($stmt);
         }
 
         $sql = "INSERT INTO login (username, password) VALUES (?, ?)";
-            $stmt = mysqli_prepare($connect, $sql);
-            if ($stmt) {
-                mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_password);
+        $stmt = mysqli_prepare($connect, $sql);
+        if ($stmt) {
+            mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_password);
+            // set these parameters
+            $param_username = $username;
+            $param_password = password_hash($password, PASSWORD_DEFAULT);
 
-                // set these parameters
-                // $param_username = $username;
-                $param_password = password_hash($password, PASSWORD_DEFAULT);
-
-                // try to execute the query
-                if (mysqli_stmt_execute($stmt)) {
-                    header("location: login.php");
-                } else {
-                    echo "Something went wrong.";
-                }
+            // try to execute the query
+            if (mysqli_stmt_execute($stmt)) {
+                header("location: login.php");
+            } else {
+                echo "Something went wrongs.";
             }
-            mysqli_stmt_close($stmt);
-
+        }
+            
+        mysqli_stmt_close($stmt);
         mysqli_close($connect);
     }
 ?>
@@ -171,7 +158,7 @@
             <br>
             <div class="form-group col-md-12">
                 <label for="inputAddress2">Address</label>
-                <input required type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                <input required name="address" type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
             </div>
             <br>
             <div class="row">
@@ -218,16 +205,16 @@
                 </div>
                 <div class="form-group col-md-4">
                 <label for="city">City</label>
-                <input required type="text" class="form-control" id="city" placeholder="City">
+                <input required name="name" type="text" class="form-control" id="city" placeholder="City">
                 </div>
                 <div class="form-group col-md-2">
                     <label for="inputZip">Zip</label>
-                    <input required type="text" class="form-control" id="inputZip" placeholder="ZIP Code">
+                    <input required name="zip" type="text" class="form-control" id="inputZip" placeholder="ZIP Code">
                 </div>
                 <div class="form-group col-md-12">
                 <br>
                 <label for="phone">Phone</label>
-                <input required type="tel" class="form-control" id="phone" placeholder="Phone Number">
+                <input required name="phone" type="tel" class="form-control" id="phone" placeholder="Phone Number">
                 </div>
             </div>
             <br>

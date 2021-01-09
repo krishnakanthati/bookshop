@@ -13,7 +13,7 @@ $err = "";
 
 // if request method is post 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-  if ( (empty(trim($_POST["username"])) && $_POST["username"] != 'admin') || empty(trim($_POST["password"])) ) {
+  if ( empty(trim($_POST["username"])) || empty(trim($_POST["password"])) ) {
     $err = "Incorrect username and password.";
   }
   else {
@@ -55,9 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
   }
 }
 
-
 ?>
-
 
 <!doctype html>
 <html lang="en">
@@ -121,8 +119,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 </form>
     
   </div>
-
-
 
     <!-- Optional JavaScript; choose one of the two! -->
 

@@ -96,7 +96,7 @@ if (isset($_POST['upload'])) {
               <img class="card-img-top" src="<?php echo 'books/' . $row['image'] ?>" style="width: 100%; height: 19rem;">
               <div class="card-body">
                 <div class="text-center"><strong><?php echo $row['name']; ?></strong></div>
-                <div class="text-center text-success"><strong>₹ <?php echo $row['price']; ?></strong></div>
+                <div class="text-center text-success"><strong>₹<?php echo $row['price']; ?></strong></div>
               </div>
             </div>
           </div>

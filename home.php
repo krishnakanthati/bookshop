@@ -83,7 +83,7 @@ session_start();
                                 <input type="submit" name="add_to_cart" class="btn btn-success col-md-8" value="Add to Cart" />
                               </div>';
                       } else {
-                        echo "Available";
+                        echo "Available!";
                         echo '<div class="row">
                                 <input type="number" min="1" class="text-center col-md-4" name="quantity" value="1" />
                                 <input type="submit" name="add_to_cart" class="btn btn-success col-md-8" value="Add to Cart" />

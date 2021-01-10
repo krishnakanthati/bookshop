@@ -132,9 +132,7 @@ if (isset($_GET["action"])) {
                         ?>
                     </table>
                 </div>
-                <form action="" method="post">
-                    <button type="submit" class="btn btn-primary col-md-2">Place Order</button>
-                </form>
+
                 <?php
 
                 if ($total) {
@@ -148,8 +146,7 @@ if (isset($_GET["action"])) {
                         $param_price = $values["item_price"];
                         $param_id = $values["item_id"];
                         $param_quantity = $values["item_quantity"];
-
-
+                        $_SESSION["total"] = $total;
                         // try to execute the query
                         if (mysqli_stmt_execute($stmt)) {
                             echo "Book added to cart.";
@@ -160,10 +157,11 @@ if (isset($_GET["action"])) {
                 } else {
                     header("location: home.php");
                 }
-
                 ?>
             </div>
-
+        </form>
+        <form action="orders.php" method="post">
+            <input type="submit" value="Place Order" class="btn btn-primary col-md-2">
         </form>
     </div>
     <!-- Optional JavaScript; choose one of the two! -->

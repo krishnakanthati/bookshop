@@ -139,11 +139,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             <div class="row">
                 <div class="form-group col-md-6">
                     <label for="inputEmail4">Name</label>
-                    <input required type="text" class="form-control" name="name" id="inputName4" placeholder="Name">
+                    <input required type="text" class="form-control" name="name" placeholder="Name">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="inputEmail4">Username</label>
-                    <input required type="text" class="form-control" name="username" id="inputUsername4" placeholder="Username">
+                    <input required type="text" class="form-control" name="username" placeholder="Username">
                 </div>
             </div>
             <br>
@@ -151,7 +151,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 <div class="form-group col-md-6">
                     <label for="inputEmail4">Email</label>
                     <input required type="email" class="form-control" name="email" placeholder="Email">
-                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                    <div class="form-text">We'll never share your email with anyone else.</div>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="inputPassword4">Password</label>
@@ -208,15 +208,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 </div>
                 <div class="form-group col-md-4">
                     <label for="city">City</label>
-                    <input required name="city" type="text" class="form-control" id="city" placeholder="City">
+                    <input required name="city" type="text" class="form-control" placeholder="City">
                 </div>
                 <div class="form-group col-md-2">
                     <label for="inputZip">Zip</label>
-                    <input required name="zip" type="text" class="form-control" id="inputZip" placeholder="ZIP Code">
+                    <input required name="zip" type="text" class="form-control" placeholder="ZIP Code">
                 </div>
                 <div class="form-group col-md-12"><br>
                     <label for="phone">Phone</label>
-                    <input required name="phone" type="tel" class="form-control" id="phone" placeholder="Phone Number">
+                    <input required name="phone" type="tel" class="form-control" placeholder="Phone Number">
                 </div>
             </div>
             <br>

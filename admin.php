@@ -43,12 +43,11 @@ if (isset($_POST['upload'])) {
             <a class="nav-link" href="logout.php">Logout</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
               Dropdown link
             </a>
-
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="admin.php">Admin</a></li>
               <li><a class="dropdown-item" href="#">Another action</a></li>
               <li><a class="dropdown-item" href="#">Something else here</a></li>
             </ul>
@@ -60,7 +59,7 @@ if (isset($_POST['upload'])) {
       </div>
     </div>
   </nav>
-  <div class="container mt-2">
+  <div class="container mt-3">
     <h3>Insert Books:</h3>
     <hr>
     <div class="row">

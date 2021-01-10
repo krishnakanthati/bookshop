@@ -29,9 +29,6 @@ session_start();
             <a class="nav-link" href="#">Features</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="login.php">Login</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="logout.php">Logout</a>
           </li>
           <li class="nav-item dropdown">
@@ -82,7 +79,7 @@ session_start();
                       } else if ($row['stock'] <= 5) {
                         echo "Hurry, Only few left!";
                         echo '<div class="row">
-                                <input type="number" min="1" class="text-center col-md-4" name="quantity" value="1" />
+                                <input type="number" min="1" max=$row["stock"] class="text-center col-md-4" name="quantity" value="1" />
                                 <input type="submit" name="add_to_cart" class="btn btn-success col-md-8" value="Add to Cart" />
                               </div>';
                       } else {

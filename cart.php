@@ -2,10 +2,6 @@
 session_start();
 require_once "config.php";
 
-if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-    header("location: login.php");
-}
-
 if (isset($_POST["add_to_cart"])) {
     if (isset($_SESSION["shopping_cart"])) {
         $item_array_id = array_column($_SESSION["shopping_cart"], "item_id");
@@ -68,7 +64,7 @@ if (isset($_GET["action"])) {
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <div class="collapse navbar-collapse">
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="home.php">Home</a>
@@ -77,10 +73,10 @@ if (isset($_GET["action"])) {
                         <a class="nav-link" href="#">Features</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="login.php">Login</a>
+                        <a class="nav-link" href="logout.php">Logout</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Dropdown link
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -118,8 +114,8 @@ if (isset($_GET["action"])) {
                                 <tr>
                                     <td><?php echo $values["item_name"]; ?></td>
                                     <td><?php echo $values["item_quantity"]; ?></td>
-                                    <td>$ <?php echo $values["item_price"]; ?></td>
-                                    <td>$ <?php echo number_format($values["item_quantity"] * $values["item_price"], 2); ?></td>
+                                    <td>₹ <?php echo $values["item_price"]; ?></td>
+                                    <td>₹ <?php echo number_format($values["item_quantity"] * $values["item_price"], 2); ?></td>
                                     <td><a href="cart.php?action=delete&id=<?php echo $values["item_id"]; ?>"><span class="text-danger">Remove</span></a></td>
                                 </tr>
                             <?php
@@ -128,7 +124,7 @@ if (isset($_GET["action"])) {
                             ?>
                             <tr>
                                 <td colspan="3" align="right">Total</td>
-                                <td align="right">$ <?php echo number_format($total, 2); ?></td>
+                                <td align="right">₹ <?php echo number_format($total, 2); ?></td>
                                 <td></td>
                             </tr>
                         <?php
@@ -136,6 +132,36 @@ if (isset($_GET["action"])) {
                         ?>
                     </table>
                 </div>
+                <form action="" method="post">
+                    <button type="submit" class="btn btn-primary col-md-2">Place Order</button>
+                </form>
+                <?php
+
+                if ($total) {
+                    $sql = "INSERT INTO cart (id, username, item_name, price, quantity) VALUES (?, ?, ?, ?, ?)";
+                    $stmt = mysqli_prepare($connect, $sql);
+                    if ($stmt) {
+                        mysqli_stmt_bind_param($stmt, "issii", $param_id, $param_username, $param_item_name, $param_price, $param_quantity);
+                        // set parameters
+                        $param_username = $_SESSION['username'];
+                        $param_item_name = $values["item_name"];
+                        $param_price = $values["item_price"];
+                        $param_id = $values["item_id"];
+                        $param_quantity = $values["item_quantity"];
+
+
+                        // try to execute the query
+                        if (mysqli_stmt_execute($stmt)) {
+                            echo "Book added to cart.";
+                        } else {
+                            echo "Book already in cart.";
+                        }
+                    }
+                } else {
+                    header("location: home.php");
+                }
+
+                ?>
             </div>
 
         </form>

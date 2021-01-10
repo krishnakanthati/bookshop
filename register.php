@@ -105,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <div class="collapse navbar-collapse">
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="home.php">Home</a>
@@ -117,7 +117,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                         <a class="nav-link" href="login.php">Login</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Dropdown link
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -150,18 +150,18 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             <div class="row">
                 <div class="form-group col-md-6">
                     <label for="inputEmail4">Email</label>
-                    <input required type="email" class="form-control" name="email" id="inputEmail4" placeholder="Email">
+                    <input required type="email" class="form-control" name="email" placeholder="Email">
                     <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="inputPassword4">Password</label>
-                    <input required type="password" class="form-control" name="password" id="inputPassword4" placeholder="Password">
+                    <input required type="password" class="form-control" name="password" placeholder="Password">
                 </div>
             </div>
             <br>
             <div class="form-group col-md-12">
                 <label for="inputAddress2">Address</label>
-                <input required name="address" type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                <input required name="address" type="text" class="form-control" placeholder="Apartment, studio, or floor">
             </div>
             <br>
             <div class="row">

@@ -8,11 +8,16 @@ if ($stmt) {
     mysqli_stmt_bind_param($stmt, "si", $_SESSION['username'], $_SESSION['total']);
 
     // try to execute the query
-    if (mysqli_stmt_execute($stmt)) {
-        echo "Thanks  for shopping with us.";
-    } else {
-        echo "Something went wrong.";
-    }
+    mysqli_stmt_execute($stmt);
+}
+
+$name = $_SESSION["username"];
+$sql = "SELECT 'id' FROM registers WHERE username='$name' limit 1";
+$result = mysqli_query($connect, $sql);
+// echo $result;
+if ($result !== false) {
+    $value = mysqli_fetch_field($result);
+    echo 'gf';
 }
 
 ?>
@@ -47,12 +52,10 @@ if ($stmt) {
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                            Dropdown link
+                            My Account
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="admin.php">Admin</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            <li><a class="dropdown-item" href="#"><?php echo ucfirst($_SESSION['username']) . '!'; ?></a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -63,6 +66,13 @@ if ($stmt) {
         </div>
     </nav>
     <div class="container mt-4">
+        <strong>
+            <h1>Thank you <?php echo ucfirst($_SESSION['username']) . ','; ?> for shopping with us.</h1>
+        </strong><br>
+        <strong>
+            <h2 style="color: green;">&emsp; Please Visit Again.</h2>
+        </strong>
+        <hr>
 
     </div>
 

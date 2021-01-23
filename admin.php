@@ -78,7 +78,10 @@ if (isset($_POST['upload'])) {
               <input type="number" min="0" class="form-control" name="stock" placeholder="Stock">
             </div>
           </div>
-          <input type="submit" name="upload" value="upload" class="btn btn-primary my-4 col-md-12">
+          <div class="form-group col-md-12">
+            <input type="submit" name="upload" value="upload" class="btn btn-primary my-4 col-md-12">
+          </div>
+
         </form>
       </div>
 

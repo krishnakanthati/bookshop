@@ -59,10 +59,10 @@ if ($stmt) {
     <div class="container mt-4">
         <strong><br>
             <h1>Thank you <?php echo $row['name'] . ','; ?> for shopping with us.</h1>
-            <br><br>
+            <br>
             <hr>
             <br>
-            <h2>Your order will be delivered at your specified address, <em style="color: green"><?php echo $row['address'] . ','; ?></em> in two business days.</h2>
+            <h2>Your order will be delivered to your specified address, <em style="color: green"><?php echo $row['address'] . ','; ?></em> in two business days.</h2>
             <br>
             <h2>Further details will be provided to you on your email <em style="color: green"><?php echo $row['email'] ?></em> &</h2>
             <h2>Phone <em style="color: green"><?php echo $row['phone'] . '.' ?></em></h2>

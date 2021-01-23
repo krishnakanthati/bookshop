@@ -42,7 +42,6 @@ if (isset($_GET["action"])) {
 }
 
 ?>
-
 <!doctype html>
 <html lang="en">
 
@@ -72,13 +71,22 @@ if (isset($_GET["action"])) {
                     <li class="nav-item">
                         <a class="nav-link" href="logout.php">Logout</a>
                     </li>
+                    <?php
+                    $name = $_SESSION['username'];
+                    $sel = "SELECT * FROM register WHERE username = '$name'";
+                    $que = mysqli_query($connect, $sel);
+                    $row = mysqli_fetch_array($que);
+                    ?>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
                             My Account
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#"><?php echo ucfirst($_SESSION['username']) . '!'; ?></a></li>
+                            <li><a class="dropdown-item" href="#"><?php echo $row['name']; ?></a></li>
                         </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Welcome <?php echo $row['name'] . '!'; ?></a>
                     </li>
                 </ul>
             </div>
@@ -159,16 +167,7 @@ if (isset($_GET["action"])) {
             <input type="submit" value="Place Order" class="btn btn-primary col-md-2">
         </form>
     </div>
-    <!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
-    -->
 </body>
 
 </html>

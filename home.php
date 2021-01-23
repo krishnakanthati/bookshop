@@ -1,6 +1,10 @@
 <?php
 require_once "config.php";
 session_start();
+$name = $_SESSION['username'];
+$sel = "SELECT * FROM register WHERE username = '$name'";
+$que = mysqli_query($connect, $sel);
+$row = mysqli_fetch_array($que);
 ?>
 <!doctype html>
 <html lang="en">
@@ -26,23 +30,18 @@ session_start();
             <a class="nav-link active" href="home.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Features</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="logout.php">Logout</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-              Dropdown link
+              My Account
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="admin.php">Admin</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
+              <li><a class="dropdown-item" href="#"><?php echo $row['name']; ?></a></li>
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">Welcome <?php echo ucfirst($_SESSION['username']) . '!'; ?></a>
+            <a class="nav-link" href="">Welcome <?php echo $row['name'] . '!'; ?></a>
           </li>
         </ul>
       </div>

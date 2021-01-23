@@ -6,20 +6,14 @@ $query = "INSERT INTO orders (username, total) VALUES (?, ?)";
 $stmt = mysqli_prepare($connect, $query);
 if ($stmt) {
     mysqli_stmt_bind_param($stmt, "si", $_SESSION['username'], $_SESSION['total']);
-
     // try to execute the query
     mysqli_stmt_execute($stmt);
-}
 
-$name = $_SESSION["username"];
-$sql = "SELECT 'id' FROM registers WHERE username='$name' limit 1";
-$result = mysqli_query($connect, $sql);
-// echo $result;
-if ($result !== false) {
-    $value = mysqli_fetch_field($result);
-    echo 'gf';
+    $name = $_SESSION['username'];
+    $sel = "SELECT * FROM register WHERE username = '$name'";
+    $que = mysqli_query($connect, $sel);
+    $row = mysqli_fetch_array($que);
 }
-
 ?>
 <!doctype html>
 <html lang="en">
@@ -45,9 +39,6 @@ if ($result !== false) {
                         <a class="nav-link active" href="home.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Features</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="logout.php">Logout</a>
                     </li>
                     <li class="nav-item dropdown">
@@ -55,24 +46,36 @@ if ($result !== false) {
                             My Account
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#"><?php echo ucfirst($_SESSION['username']) . '!'; ?></a></li>
+                            <li><a class="dropdown-item" href="#"><?php echo $row['name']; ?></a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">Welcome <?php echo ucfirst($_SESSION['username']) . '!'; ?></a>
+                        <a class="nav-link" href="">Welcome <?php echo $row['name'] . '!'; ?></a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
     <div class="container mt-4">
-        <strong>
-            <h1>Thank you <?php echo ucfirst($_SESSION['username']) . ','; ?> for shopping with us.</h1>
-        </strong><br>
-        <strong>
-            <h2 style="color: green;">&emsp; Please Visit Again.</h2>
-        </strong>
-        <hr>
+        <strong><br>
+            <h1>Thank you <?php echo $row['name'] . ','; ?> for shopping with us.</h1>
+            <br><br>
+            <hr>
+            <br>
+            <h2>Your order will be delivered at your specified address, <em style="color: green"><?php echo $row['address'] . ','; ?></em> in two business days.</h2>
+            <br>
+            <h2>Further details will be provided to you on your email <em style="color: green"><?php echo $row['email'] ?></em> &</h2>
+            <h2>Phone <em style="color: green"><?php echo $row['phone'] . '.' ?></em></h2>
+            <br>
+            <form action="home.php" class="inline">
+                <button class="btn btn-primary col-md-2">Continue Shopping</button>
+            </form>
+
+            <hr>
+            <strong>
+                <p style="color: blue">Reach out to us at https://www.bookstore.com</p>
+            </strong>
+
 
     </div>
 

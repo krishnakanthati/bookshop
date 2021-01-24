@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 23, 2021 at 09:47 PM
+-- Generation Time: Jan 24, 2021 at 05:36 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.4.13
 
@@ -64,6 +64,14 @@ CREATE TABLE `cart` (
   `item_name` varchar(30) NOT NULL,
   `quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`id`, `price`, `added`, `username`, `item_name`, `quantity`) VALUES
+(95, 370, '2021-01-24 04:33:06', 'ayesha', 'B Book', 5),
+(98, 112, '2021-01-24 04:38:46', 'ayesha', 'D Book', 10);
 
 -- --------------------------------------------------------
 
@@ -129,15 +137,15 @@ CREATE TABLE `register` (
 --
 
 INSERT INTO `register` (`name`, `username`, `email`, `address`, `state`, `city`, `zip`, `phone`, `joined`, `id`) VALUES
-('admin', 'admin', 'admin@bookstore.com', '#273, Ram Mandir St., 1st cross Hosahalli, Mandya', 'Karnataka', 'Mandya', 571401, 9731541334, '2021-01-09 17:49:32', 1),
+('ADMIN', 'admin', 'admin@bookstore.com', '#273, Ram Mandir St., 1st cross Hosahalli, Mandya', 'Karnataka', 'Mandya', 571401, 9731541334, '2021-01-09 17:49:32', 1),
 ('AYESHA', 'ayesha', 'ayesha@ayesha.com', '#231 New Bazaar, Dehradun', 'Telangana', 'Mamdid', 156478, 8095021456, '2021-01-24 01:31:16', 8),
-('harry', 'harry', 'harry@harry.com', '#252, Ram Mandir St., 2st cross Hosahalli', 'Karnataka', 'Mandya', 571401, 8095080543, '2021-01-23 22:13:25', 5),
+('HARRY', 'harry', 'harry@harry.com', '#252, Ram Mandir St., 2st cross Hosahalli', 'Karnataka', 'Mandya', 571401, 8095080543, '2021-01-23 22:13:25', 5),
 ('JACK', 'jack', 'jack@jack.in', '#123 Walter St, New Road', 'Lakshadweep', 'Mehrauli', 456789, 9797856412, '2021-01-24 01:46:46', 9),
-('Jane', 'jane', 'jane@yahoo.com', 'Postmaster, Post Office MEHRAULI, SOUTH WEST DELHI', 'Delhi', 'Mehrauli', 110030, 9731541335, '2021-01-17 01:49:27', 2),
-('jimm', 'jimm', 'jimm@jimm.com', '#302 2nd Cross, Ashok Nagar', 'Delhi', 'Delhi', 571402, 9731541335, '2021-01-23 22:10:34', 4),
-('Kris', 'kris', 'krishnakanthati@yahoo.com', '#273, Ram Mandir St., 1st cross Hosahalli, Mandya', 'Karnataka', 'Mandya', 571401, 9731541334, '2021-01-10 02:25:53', 3),
-('niki', 'niki', 'niki@niki.com', '#10, New Street, Mirzapur', 'Gujarat', 'Dehradun', 564123, 8217243778, '2021-01-23 23:03:50', 6),
-('Nisha', 'nisha', 'nisha@nisha.com', '#12 Wall Street, Bazaar', 'Karnataka', 'Gurgaon', 564789, 8172434561, '2021-01-24 00:11:01', 7);
+('JANE', 'jane', 'jane@yahoo.com', 'Postmaster, Post Office MEHRAULI, SOUTH WEST DELHI', 'Delhi', 'Mehrauli', 110030, 9731541335, '2021-01-17 01:49:27', 2),
+('JIMM', 'jimm', 'jimm@jimm.com', '#302 2nd Cross, Ashok Nagar', 'Delhi', 'Delhi', 571402, 9731541335, '2021-01-23 22:10:34', 4),
+('KRIS', 'kris', 'krishnakanthati@yahoo.com', '#273, Ram Mandir St., 1st cross Hosahalli, Mandya', 'Karnataka', 'Mandya', 571401, 9731541334, '2021-01-10 02:25:53', 3),
+('NIKI', 'niki', 'niki@niki.com', '#10, New Street, Mirzapur', 'Gujarat', 'Dehradun', 564123, 8217243778, '2021-01-23 23:03:50', 6),
+('NISHA', 'nisha', 'nisha@nisha.com', '#12 Wall Street, Bazaar', 'Karnataka', 'Gurgaon', 564789, 8172434561, '2021-01-24 00:11:01', 7);
 
 --
 -- Triggers `register`
@@ -208,7 +216,7 @@ ALTER TABLE `login`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=137;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=139;
 
 --
 -- AUTO_INCREMENT for table `register`

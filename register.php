@@ -108,21 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="home.php">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Features</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="login.php">Login</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                            My Account
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#"><?php echo ucfirst($_SESSION['username']) . '!'; ?></a></li>
-                        </ul>
                     </li>
                 </ul>
             </div>
@@ -141,7 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 </div>
                 <div class="form-group col-md-6">
                     <label for="inputEmail4">Username</label>
-                    <input required type="text" class="form-control" name="username" placeholder="Username">
+                    <input required type="text" class="form-control" name="username" placeholder="Username" minlength="4">
                 </div>
             </div>
             <br>
@@ -206,15 +192,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 </div>
                 <div class="form-group col-md-4">
                     <label for="city">City</label>
-                    <input required name="city" type="text" class="form-control" placeholder="City">
+                    <input required name="city" type="text" pattern="^[^0-9]+$" class="form-control" placeholder="City">
                 </div>
                 <div class="form-group col-md-2">
                     <label for="inputZip">Zip</label>
-                    <input required name="zip" type="text" class="form-control" placeholder="ZIP Code">
+                    <input required name="zip" type="text" pattern="\d*" class="form-control" placeholder="ZIP Code" maxlength="6">
                 </div>
                 <div class="form-group col-md-12"><br>
                     <label for="phone">Phone</label>
-                    <input required name="phone" type="tel" class="form-control" placeholder="Phone Number">
+                    <input required name="phone" type="text" pattern="\d*" class="form-control" placeholder="Phone Number" maxlength="10">
                 </div>
             </div>
             <br>
@@ -225,5 +211,3 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 
 </body>
-
-</html>

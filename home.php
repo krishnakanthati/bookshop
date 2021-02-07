@@ -72,19 +72,19 @@ $row = mysqli_fetch_array($que);
                       <?php if ($row['stock'] == 0) {
                         echo "Out of Stock!";
                         echo '<div class="row">
-                                <input type="number" min="1" class="text-center col-md-4" name="quantity" value="1" />
+                                <input type="number" min="0" class="text-center col-md-4" name="quantity" value="1" />
                                 <input readonly name="add_to_cart" class="btn btn-success col-md-8" value="Add to Cart" />
                               </div>';
                       } else if ($row['stock'] <= 5) {
                         echo "Hurry, Only few left!";
                         echo '<div class="row">
-                                <input type="number" min="1" max=$row["stock"] class="text-center col-md-4" name="quantity" value="1" />
+                                <input type="number" min="0" max=$row["stock"] class="text-center col-md-4" name="quantity" value="1" />
                                 <input type="submit" name="add_to_cart" class="btn btn-success col-md-8" value="Add to Cart" />
                               </div>';
                       } else {
                         echo "Available!";
                         echo '<div class="row">
-                                <input type="number" min="1" class="text-center col-md-4" name="quantity" value="1" />
+                                <input type="number" min="0" class="text-center col-md-4" name="quantity" value="1" />
                                 <input type="submit" name="add_to_cart" class="btn btn-success col-md-8" value="Add to Cart" />
                               </div>';
                       } ?>

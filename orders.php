@@ -73,7 +73,7 @@ if ($stmt) {
 
             <hr>
             <strong>
-                <p style="color: blue">Reach out to us at https://www.bookstore.com</p>
+                <p style="color: blue">Reach out to us at https://www.bookshop.com</p>
             </strong>
     </div>
 
